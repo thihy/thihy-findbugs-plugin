@@ -1,2 +1,0 @@
-thihy-findbugs-plugin
-=====================

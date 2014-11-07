@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MessageCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="messagecollection.xsd">
+
+	<Plugin>
+		<ShortDescription>Thihy FindBugs Plugin</ShortDescription>
+		<Details>Thihy Findbugs Plugin</Details>
+	</Plugin>
+
+	<Detector class="com.thihy.findbugs.log.MisuseLogNameDetector">
+		<Details>
+			The misuse of class param when getting a logger
+		</Details>
+	</Detector>
+
+
+	<Detector class="com.thihy.findbugs.log.NonFinalLogFieldDetector">
+		<Details>The logger field should be final</Details>
+	</Detector>
+
+	<BugPattern type="THY_MISUSE_LOG_NAME_BUG">
+		<ShortDescription>Misuse of logger name</ShortDescription>
+		<LongDescription>Misuse of logger name in {1}</LongDescription>
+		<Details>
+<![CDATA[
+<p>The class param should be same with the enclosed. For example: </p>
+<pre>
+public class UserService{
+    private static final Logger LOGGER = LoggerFactory.getLogger(SchoolService.class);// incorrectly
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);// correctly
+}
+</pre>
+]]>
+		</Details>
+	</BugPattern>
+
+	<BugPattern type="THY_NON_FINAL_LOGGER_FIELD">
+		<ShortDescription>Logger field should be final</ShortDescription>
+		<LongDescription>Logger field should be final in {1}</LongDescription>
+		<Details>
+<![CDATA[
+<p>The logger field should be final. For example:</p>
+<pre>
+public class UserService{
+    private static Logger LOGGER = ...;// incorrectly
+    private Logger LOGGER = ...;// incorrectly
+    private static final Logger LOGGER = ...;// correctly
+    private final Logger LOGGER = ...;// correctly
+}
+</pre>
+]]>
+		</Details>
+	</BugPattern>
+
+	<BugCode abbrev="MLN">Misuse of logger name</BugCode>
+	<BugCode abbrev="NFLF">Logger field should be final</BugCode>
+</MessageCollection>

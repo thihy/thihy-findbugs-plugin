@@ -1,0 +1,15 @@
+<FindbugsPlugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="findbugsplugin.xsd"
+	pluginid="com.thihy.findbugs.LogParamClass" provider="Log Param CLass"
+	website="http://findbugs.sourceforge.net">
+
+	<Detector class="com.thihy.findbugs.log.MisuseLogNameDetector"
+		reports="THY_MISUSE_LOG_NAME_BUG" />
+	<BugPattern type="THY_MISUSE_LOG_NAME_BUG" abbrev="MLN"
+		category="CORRECTNESS" />
+
+	<Detector class="com.thihy.findbugs.log.NonFinalLogFieldDetector"
+		reports="THY_NON_FINAL_LOGGER_FIELD"></Detector>
+	<BugPattern type="THY_NON_FINAL_LOGGER_FIELD" abbrev="NFLF"
+		category="CORRECTNESS"></BugPattern>
+</FindbugsPlugin>
